@@ -29,7 +29,7 @@ public final class NoteKeeperDatabaseContract {
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         _ID + " INTEGER PRIMARY KEY " +
                         COLUMN_NOTE_TITLE + " TEXT NOT NULL, " +
-                        COLUMN_COURSE_ID + " TEXT, " +
-                        COLUMN_NOTE_TEXT + " TEXT NOT NULL)";
+                        COLUMN_NOTE_TEXT + " TEXT, " +
+                        COLUMN_COURSE_ID + " TEXT NOT NULL)";
     }
 }

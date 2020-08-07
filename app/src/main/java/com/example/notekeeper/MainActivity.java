@@ -84,10 +84,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         List<NoteInfo> notes = DataManager.getInstance().getNotes();
         mNoteRecyclerAdapter = new NoteRecyclerAdapter(this, notes);
-            displayNotes();
 
         List<CourseInfo> courses = DataManager.getInstance().getCourses();
             mCourseRecyclerAdapter = new CourseRecyclerAdapter(this, courses);
+            displayNotes();
         }
 
     private void displayNotes() {
