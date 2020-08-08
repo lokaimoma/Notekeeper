@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawer = findViewById(R.id.drawer_layout);
        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        initializeDisplayContent();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, toolbar, (R.string.open_navigation_drawer), (R.string.close_navigation_drawer));
         mDrawer.setDrawerListener(toggle);
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.id.nav_notes, R.id.nav_courses)
                 .setDrawerLayout(mDrawer)
              .build();
-        initializeDisplayContent();
+
     }
 
     @Override
@@ -94,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mRecyclerItems.setAdapter(mNoteRecyclerAdapter);
         mRecyclerItems.setLayoutManager(mNotesLayoutManager);
         SQLiteDatabase db =mDbOpenHelper.getReadableDatabase();
-
         selectNavigationMenuItem(R.id.nav_notes);
     }
 
