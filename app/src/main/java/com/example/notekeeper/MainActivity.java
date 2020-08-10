@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
         private void initializeDisplayContent () {
-
+            DataManager.loadFromDatabase(mDbOpenHelper);
             mRecyclerItems = (RecyclerView) findViewById(R.id.list_item);
             mNotesLayoutManager = new LinearLayoutManager(this);
             mCoursesLayoutManager = new GridLayoutManager(this, getResources().getInteger(R.integer.course_grid_span));
