@@ -16,7 +16,7 @@ public final class NoteKeeperDatabaseContract {
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         _ID + " INTEGER PRIMARY KEY, " +
                         COLUMN_COURSE_ID + " TEXT UNIQUE NOT NULL, " +
-                        COLUMN_COURSE_TITLE + "TEXT NOT NULL)";
+                        COLUMN_COURSE_TITLE + " TEXT NOT NULL)";
     }
 
     public static final class NoteInfoEntry implements BaseColumns {
