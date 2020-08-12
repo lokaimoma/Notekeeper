@@ -10,12 +10,13 @@ public final class NoteInfo implements Parcelable {
     private int mId;
 
 
-    public NoteInfo(int id, CourseInfo course, String title, String text) {
+    public NoteInfo( CourseInfo course, String title, String text) {
         mCourse = course;
         mTitle = title;
         mText = text;
-        mId = id;
+
     }
+
 
     private NoteInfo(Parcel parcel) {
         mCourse = parcel.readParcelable(CourseInfo.class.getClassLoader());
@@ -24,11 +25,13 @@ public final class NoteInfo implements Parcelable {
 
 
     }
-//
-//    public NoteInfo(int id, CourseInfo noteCourse, String noteTitle, String noteText) {
-//
-//    }
 
+    public NoteInfo(int id, CourseInfo course, String title, String text) {
+        mCourse = course;
+        mTitle = title;
+        mText = text;
+        mId = id;
+    }
 
 
     public CourseInfo getCourse() {
@@ -39,9 +42,11 @@ public final class NoteInfo implements Parcelable {
         mCourse = course;
     }
 
-    public int getId() { return mId;}
 
 
+    public int getId() {
+        return mId;
+    }
 
     public String getTitle() {
         return mTitle;
@@ -60,7 +65,7 @@ public final class NoteInfo implements Parcelable {
     }
 
     private String getCompareKey() {
-        return mCourse.getCourseId() + "|" + mTitle + "|" + mText + "|" + mId;
+        return mCourse.getCourseId() + "|" + mTitle + "|" + mText ;
     }
 
     @Override
