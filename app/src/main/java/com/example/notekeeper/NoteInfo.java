@@ -7,18 +7,29 @@ public final class NoteInfo implements Parcelable {
     private CourseInfo mCourse;
     private String mTitle;
     private String mText;
+    private int mId;
 
-    public NoteInfo(CourseInfo course, String title, String text) {
+
+    public NoteInfo(int id, CourseInfo course, String title, String text) {
         mCourse = course;
         mTitle = title;
         mText = text;
+        mId = id;
     }
 
     private NoteInfo(Parcel parcel) {
         mCourse = parcel.readParcelable(CourseInfo.class.getClassLoader());
         mTitle = parcel.readString();
         mText = parcel.readString();
+
+
     }
+//
+//    public NoteInfo(int id, CourseInfo noteCourse, String noteTitle, String noteText) {
+//
+//    }
+
+
 
     public CourseInfo getCourse() {
         return mCourse;
@@ -27,6 +38,10 @@ public final class NoteInfo implements Parcelable {
     public void setCourse(CourseInfo course) {
         mCourse = course;
     }
+
+    public int getId() { return mId;}
+
+
 
     public String getTitle() {
         return mTitle;
@@ -45,7 +60,7 @@ public final class NoteInfo implements Parcelable {
     }
 
     private String getCompareKey() {
-        return mCourse.getCourseId() + "|" + mTitle + "|" + mText;
+        return mCourse.getCourseId() + "|" + mTitle + "|" + mText + "|" + mId;
     }
 
     @Override
@@ -78,6 +93,7 @@ public final class NoteInfo implements Parcelable {
         parcel.writeParcelable(mCourse, 0);
         parcel.writeString(mTitle);
         parcel.writeString(mText);
+
     }
 
     public static final Parcelable.Creator<NoteInfo> CREATOR =
@@ -92,6 +108,8 @@ public final class NoteInfo implements Parcelable {
                     return new NoteInfo[size];
                 }
             };
+
+
 }
 
 
