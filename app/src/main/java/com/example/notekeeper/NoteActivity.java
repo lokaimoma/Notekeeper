@@ -57,7 +57,7 @@ public class NoteActivity extends AppCompatActivity {
                 ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()));
         mViewModel = viewModelProvider.get(NoteActivityViewModel.class);
 
-        if( mViewModel.mIsNewlyCreated && savedInstanceState != null)
+        if (mViewModel.mIsNewlyCreated && savedInstanceState != null)
             mViewModel.restoreState(savedInstanceState);
         mViewModel.mIsNewlyCreated = false;
 
@@ -72,12 +72,12 @@ public class NoteActivity extends AppCompatActivity {
 
         readDisplayStateValues();
         saveOriginalNoteValues();
-        
+
         mTextNoteTitle = findViewById(R.id.text_note_title);
         mTextNoteText = findViewById(R.id.text_note_text);
 
         if (!mIsNewNote)
-           loadNoteData();
+            loadNoteData();
         Log.d(TAG, "On Create");
         if (mNote != null) {
             displayNote();
@@ -100,7 +100,7 @@ public class NoteActivity extends AppCompatActivity {
                 NoteInfoEntry.COLUMN_NOTE_TEXT
         };
         mNoteCursor = db.query(NoteInfoEntry.TABLE_NAME, noteColumns,
-                selection,selectionArgs,null,null, null);
+                selection, selectionArgs, null, null, null);
         mCourseIdPos = mNoteCursor.getColumnIndex(NoteInfoEntry.COLUMN_COURSE_ID);
         mNoteTitlePos = mNoteCursor.getColumnIndex(NoteInfoEntry.COLUMN_NOTE_TITLE);
         mNoteTextPos = mNoteCursor.getColumnIndex(NoteInfoEntry.COLUMN_NOTE_TEXT);
@@ -110,7 +110,7 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void saveOriginalNoteValues() {
-        if(mIsNewNote)
+        if (mIsNewNote)
             return;
         mViewModel.mOriginalNoteCourseId = mNote.getCourse().getCourseId();
         mViewModel.mOriginalNoteTitle = mNote.getText();
@@ -137,7 +137,7 @@ public class NoteActivity extends AppCompatActivity {
             CreateNewNote();
         }
         Log.i(TAG, "mNoteId: " + mNoteId);
-//            mNote = DataManager.getInstance().getNotes().get(mNoteId);
+        mNote = DataManager.getInstance().getNotes().get(mNoteId);
 
     }
 
@@ -199,14 +199,14 @@ public class NoteActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         if (mIsCancelling) {
-             Log.i(TAG, "Cancelling note at position: " + mNoteId);
+            Log.i(TAG, "Cancelling note at position: " + mNoteId);
             if (mIsNewNote) {
-                 DataManager.getInstance().removeNote((mNoteId));
+                DataManager.getInstance().removeNote((mNoteId));
             } else {
-            storePreviousNoteValues();
+                storePreviousNoteValues();
             }
 
-        }else {
+        } else {
             saveNote();
         }
         Log.d(TAG, "onPause");
@@ -215,8 +215,7 @@ public class NoteActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        if(outState != null)
-            mViewModel.saveState(outState);
+        mViewModel.saveState(outState);
 
     }
 
@@ -235,7 +234,7 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void sendEmail() {
-        CourseInfo course = (CourseInfo)  mSpinnerCourses.getSelectedItem();
+        CourseInfo course = (CourseInfo) mSpinnerCourses.getSelectedItem();
         String subject = mTextNoteTitle.getText().toString();
         String text = "Checkout what I learned in the Pluralsight course\"" +
                 course.getTitle() + "\"\n" + mTextNoteText.getText();
